@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d1512">
+  <title>Teen Patti</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>Teen Patti</h1>
+    <span id="conn" class="conn" title="Connection to the table">connecting…</span>
+    <div class="top-right">
+      <label class="boot">Boot
+        <select id="boot" disabled></select>
+      </label>
+      <button class="btn ghost" id="rulesBtn" title="Rules">?</button>
+      <button class="btn ghost" id="menuBtn" title="Menu">&#9776;</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="play">
+      <section class="table" id="table">
+        <div class="felt"></div>
+        <div class="center" id="center"></div>
+        <div class="seats" id="seats"></div>
+      </section>
+
+      <section class="join" id="join" hidden>
+        <p>Tap an empty seat to sit down.</p>
+      </section>
+
+      <section class="hand" id="hand" hidden></section>
+    </div>
+
+    <aside class="side">
+      <div class="panel"><h2>Scoreboard</h2><table id="board"></table></div>
+      <div class="panel"><h2>Log</h2><ul id="log" class="list"></ul></div>
+      <div class="panel"><h2>Recent hands</h2><ul id="history" class="list"></ul></div>
+    </aside>
+  </main>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <div id="login" class="login" hidden>
+    <form class="login-card" id="loginForm" autocomplete="on">
+      <h1>Teen Patti</h1>
+      <div class="tabs">
+        <button type="button" class="tab active" data-mode="login">Log in</button>
+        <button type="button" class="tab" data-mode="signup">Sign up</button>
+      </div>
+      <label>Username
+        <input id="user" name="username" maxlength="16" autocomplete="username" autocapitalize="none" required>
+      </label>
+      <label>Password
+        <input id="pass" name="password" type="password" autocomplete="current-password" required>
+      </label>
+      <label id="codeRow" hidden>Table code <span class="muted small">(ask whoever invited you)</span>
+        <input id="code" name="code" autocomplete="off">
+      </label>
+      <div id="loginError" class="login-error" hidden></div>
+      <button class="btn primary" id="loginSubmit" type="submit">Log in</button>
+    </form>
+  </div>
+
+  <dialog id="menu">
+    <h2>Menu</h2>
+    <p class="muted small" id="whoami"></p>
+    <label class="check"><input type="checkbox" id="sound" checked> Sound &amp; vibration on your turn</label>
+    <div class="menu-actions">
+      <button class="btn" data-menu="logout">Log out</button>
+      <button class="btn" data-menu="leave">Leave table</button>
+      <button class="btn danger" data-menu="reset">Reset everyone's chips</button>
+    </div>
+    <p class="muted small">Leaving gives up your seat and your chips. Logging out or closing the tab doesn't &mdash; log in again from any device to get back to your seat.</p>
+    <form method="dialog"><button class="btn">Close</button></form>
+  </dialog>
+
+  <dialog id="rules">
+    <h2>How it plays</h2>
+    <p><b>Boot:</b> everyone in the hand puts in the boot, then gets 3 cards face down.</p>
+    <p><b>Blind / Seen:</b> you can play without looking (blind) or look at your cards (seen). Blind pays the current stake; seen pays double.</p>
+    <p><b>Chaal</b> keeps the stake. <b>Raise</b> doubles it (up to 32&times; the boot). <b>Pack</b> folds.</p>
+    <p><b>Show:</b> with two players left, either one can pay to ask for a show. Both hands are revealed and the better hand wins. If they tie, the player who asked loses.</p>
+    <p><b>Hands, best to worst:</b></p>
+    <ol class="ranks">
+      <li>Trail (three of a kind)</li>
+      <li>Pure sequence (straight flush)</li>
+      <li>Sequence (straight)</li>
+      <li>Color (flush)</li>
+      <li>Pair</li>
+      <li>High card</li>
+    </ol>
+    <p class="muted small">Sequences: A-K-Q is highest, then A-2-3, down to 4-3-2. On your turn you have to act &mdash; if you disconnect during it, you're packed after 30 seconds.</p>
+    <form method="dialog"><button class="btn">Got it</button></form>
+  </dialog>
+
+  <script src="/app.js"></script>
+</body>
+</html>
