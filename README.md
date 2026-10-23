@@ -1,4 +1,4 @@
-﻿# Teen Patti
+# Teen Patti
 
 A small table for up to 6 friends. No database, no accounts, no dependencies - just Node 18+.
 
