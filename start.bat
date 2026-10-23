@@ -12,7 +12,7 @@ if errorlevel 1 (
 rem open the table in the browser once the server has had a moment to start
 start "" cmd /c "timeout /t 2 /nobreak >nul & start http://localhost:3000"
 
-node server.js
+node dev-server.js
 
 echo.
 echo The server stopped. Scroll up to see why.

@@ -1,4 +1,4 @@
-# Teen Patti
+﻿# Teen Patti
 
 A small table for up to 6 friends. No database, no accounts, no dependencies - just Node 18+.
 
@@ -24,7 +24,10 @@ the first time, allow private networks.
 2. In the Vercel project, open **Storage** and add an **Upstash Redis** database from the Marketplace.
    This sets `KV_REST_API_URL` / `KV_REST_API_TOKEN` (or `UPSTASH_REDIS_REST_*`) automatically.
    Vercel's filesystem is read-only/ephemeral, so without Redis the API returns an error.
-3. Redeploy. Share the `*.vercel.app` link with your friends.
+3. In **Settings > Environment Variables** add `SESSION_SECRET` (any long random string, e.g.
+   `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`). Optionally add
+   `TABLE_CODE` to require a code when creating an account.
+4. Redeploy. Share the `*.vercel.app` link with your friends.
 
 Or from the CLI: `npx vercel` (preview) / `npx vercel --prod`.
 
@@ -33,7 +36,7 @@ Or from the CLI: `npx vercel` (preview) / `npx vercel --prod`.
 - `game.js` - the engine: deck, hand ranking, betting rounds. The server is the only source of truth;
   each player is sent only the cards they are allowed to see.
 - `api/*.js` - thin Vercel serverless functions (`/api/auth`, `/api/state`, `/api/action`) that
-  delegate to `lib/router.js`. `server.js` runs the same handlers locally.
+  delegate to `lib/router.js`. `dev-server.js` runs the same handlers locally.
 - `lib/store.js` - storage: Upstash Redis on Vercel, a JSON file locally.
 - `public/` - the page. A player is identified by a token kept in their browser, so refreshing or
   closing the tab returns them to the same seat.

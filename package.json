@@ -1,11 +1,10 @@
-{
+﻿{
   "name": "teen-patti",
   "version": "1.0.0",
   "description": "A small 6-player Teen Patti table for friends",
   "private": true,
-  "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node dev-server.js",
     "test": "node test.js"
   },
   "engines": {
